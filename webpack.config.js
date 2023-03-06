@@ -5,7 +5,7 @@ const config = {
     entry: './static/js/index.js',
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'static/dist'),
         filename: 'main.js'
     },
     module: {
