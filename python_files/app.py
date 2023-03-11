@@ -1,8 +1,13 @@
+import os
 from flask import Flask, render_template, request
+from werkzeug.utils import secure_filename
+from prediction_blueprint import prediction_blueprint
+
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
+app.register_blueprint(prediction_blueprint)
 
 @app.route('/')
 def index():  # put application's code here
@@ -14,7 +19,7 @@ def upload():
     file = request.files['file']
     fn = secure_filename(file.filename)
     # sleep(3)
-    file.save(os.path.join('../uploads', fn))
+    file.save(os.path.join('uploads', fn))
     return {
         "success": True,
         "message": fn
