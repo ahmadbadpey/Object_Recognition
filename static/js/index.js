@@ -13,7 +13,6 @@ let myDropzone = new Dropzone("#upload-btn", {
     dictDefaultMessage: "",
     acceptedFiles: "image/jpeg,image/jpg,image/png",
     success: (file) => {
-        console.log(file.name)
         getPredict(file.name)
     }
 });
@@ -28,8 +27,15 @@ function getPredict(image) {
             'image': image
         })
     })
-        .then(r => r.text())
+        .then(r => r.json())
         .then(response => {
-            // console.log(response)
+            const obj = document.getElementById('object_name');
+
+            if (response && response.message) {
+                obj.innerText = response.message.name
+            }else{
+                obj.innerText = 'موردی یافت نشد'
+            }
+            obj.style.display = 'block'
         })
 }
