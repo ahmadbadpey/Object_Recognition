@@ -33,7 +33,7 @@ def index():
         "message" : {
             "category" : resultTuple[0],
             "name" : resultTuple[1],
-            "prob" : str(0.26687324)
+            "prob" : str(resultTuple[2])
         }
     }
 
